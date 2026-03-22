@@ -23,13 +23,14 @@ function buildReel() {
   });
 }
 
-// Nav scroll + burger
+// Nav scroll
 window.addEventListener('scroll', () => {
   document.getElementById('navbar')?.classList.toggle('scrolled', window.scrollY > 50);
   document.getElementById('scrollHint')?.classList.toggle('hidden', window.scrollY > 80);
 });
+
 function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
+  document.getElementById('navLinks')?.classList.toggle('open');
 }
 
 // Ajouter les classes sur les svc pour fond blanc

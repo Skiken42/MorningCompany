@@ -132,11 +132,11 @@ section { padding: 80px 6%; }
 .s-sub-dk { color: #666; }
 
 /* ── SERVICES ── */
-.svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 .svc { padding: 32px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); transition: background .2s; }
 .svc:hover { background: rgba(255,255,255,.03); }
-.svc:nth-child(2n) { border-right: none; }
-.svc:nth-child(3), .svc:nth-child(4) { border-bottom: none; }
+
+.svc:nth-child(3), 
 .svc-icon { font-size: 24px; margin-bottom: 14px; }
 .svc-name { font-size: 16px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
 .svc-desc { font-size: 13px; color: rgba(255,255,255,.4); line-height: 1.7; }
@@ -283,8 +283,8 @@ footer { background: #080808; padding: 40px 6%; display: grid; grid-template-col
   .logo-mobile { display: block; }
   .nav-links.open { display: flex !important; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: rgba(13,13,13,.98); padding: 24px 5% 32px; gap: 24px; border-bottom: 1px solid var(--border); z-index: 199; justify-content: flex-start; }
   .svc-grid { grid-template-columns: 1fr; }
-  .svc:nth-child(2n) { border-right: 1px solid var(--border); }
-  .svc:nth-child(3) { border-bottom: 1px solid var(--border); }
+  
+  
   .pricing-wrap { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
 }
@@ -315,7 +315,7 @@ footer { background: #080808; padding: 40px 6%; display: grid; grid-template-col
 .port-card[data-loaded="false"] .port-thumb { opacity: 0; }
 
 /* Services sur section-gray - variante fond blanc */
-.svc-light { background: var(--white) !important; border-color: #e5e5e5 !important; }
+.svc-light { background: var(--white) !important; border: 1px solid #e5e5e5 !important; border-radius: 12px !important; }
 .svc-name-dk { color: var(--dark) !important; }
 .svc-desc-dk { color: #666 !important; }
 
