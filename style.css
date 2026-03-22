@@ -211,7 +211,7 @@ section { padding: 80px 6%; }
 .faq-section .s-title { color: var(--dark); }
 .faq-section .s-label { color: var(--red); }
 .faq-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
-.faq-item { background: var(--white); border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; cursor: pointer; align-self: start; }
+.faq-item { background: var(--white); border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; cursor: pointer; align-self: start; height: fit-content; }
 .faq-q { font-weight: 700; font-size: 14px; color: var(--dark); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .faq-q-chevron { flex-shrink: 0; color: var(--red); font-size: 12px; transition: transform .2s; }
 .faq-item.open .faq-q-chevron { transform: rotate(180deg); }
@@ -234,8 +234,8 @@ footer { background: #080808; padding: 40px 6%; display: grid; grid-template-col
 .footer-links a { font-size: 12px; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
 .footer-links a:hover { color: var(--white); }
 .footer-socials { display: flex; gap: 10px; }
-.footer-social { width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background .2s; color: rgba(255,255,255,.6); }
-.footer-social:hover { background: rgba(232,25,44,.2); }
+.footer-social { width: 40px; height: 40px; border-radius: 8px; background: rgba(255,255,255,.06); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: background .25s, color .25s, border-color .25s, transform .2s; color: rgba(255,255,255,.5); }
+.footer-social:hover { background: rgba(232,25,44,.15); border-color: rgba(232,25,44,.5); color: var(--white); transform: translateY(-2px); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
@@ -280,3 +280,5 @@ footer { background: #080808; padding: 40px 6%; display: grid; grid-template-col
 /* Image placeholder pendant chargement */
 .port-thumb { background: #1a1a1a; }
 .port-card[data-loaded="false"] .port-thumb { opacity: 0; }
+
+.footer-discord:hover { opacity: .88; transform: translateY(-2px); }

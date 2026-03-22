@@ -177,7 +177,7 @@
 const portfolio = [
   { id:'paladium',     name:'Paladium',        sector:'Gaming',     views:'592k', bg:'linear-gradient(160deg,#0d2b1a,#1a4d2e)', stats:[{n:'592k',l:'vues'},{n:'En cours',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=IuIV3Cb0Mqs&list=PL3CdIvZmviUSHH9ybdQ5RD9KAFREJdEhq' },
   { id:'nationsglory', name:'NationsGlory',    sector:'Gaming',     views:'312k', bg:'linear-gradient(160deg,#0d1b2b,#1a2d4d)', stats:[{n:'312k',l:'vues'},{n:'En cours',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=nqMRZmwl0QE&list=PL3CdIvZmviURuCTDnUMGKYgmgR4g9nV1Y' },
-  { id:'legendaires',  name:'Les Légendaires', sector:'Gaming',     views:'647k', bg:'linear-gradient(160deg,#2b0d15,#4d1a24)', stats:[{n:'647k',l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'' },
+  { id:'legendaires',  name:'Les Légendaires', sector:'Gaming',     views:'647k', bg:'linear-gradient(160deg,#2b0d15,#4d1a24)', stats:[{n:'647k',l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/@tsumablox' },
   { id:'hypenetwork',  name:'HypeNetwork',     sector:'Gaming',     views:'706k', bg:'linear-gradient(160deg,#2b1a0d,#4d3318)', stats:[{n:'706k',l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=eFtxpiRCwdw&list=PL3CdIvZmviUTRMnwNWKeMuS2lHwNVv850' },
   { id:'badlands',     name:'BadLands',        sector:'Gaming',     views:'33k',  bg:'linear-gradient(160deg,#1a0d2b,#2e1a4d)', stats:[{n:'33k', l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=eNBKplVTTgE&list=PL3CdIvZmviUQr-JhVwPgVXypGFdB-CYja' },
   { id:'macoloc',      name:'Macoloc',         sector:'Immobilier', views:'43k',  bg:'linear-gradient(160deg,#0d2b2b,#1a4d4d)', stats:[{n:'43k', l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=rICJ7c6M8hc&list=PL3CdIvZmviUR1zTOG0r3VnYJJTfpMh7jV' },
@@ -222,11 +222,24 @@ function buildPortfolio() {
   portfolio.forEach(c => {
     const el = document.createElement('div');
     el.className = 'port-card';
-    el.onclick = () => openPopup(c.id);
-    el.innerHTML =
-      '<img class="port-thumb" src="images/presse/cover_' + c.id + '.jpg" alt="' + c.name + '" loading="lazy" onerror="this.style.display=\'none\'">' +
-      '<div class="port-card-cursor"><div class="port-card-cursor-circle">Voir</div></div>' +
-      '<div class="port-overlay"><div class="port-client-name">' + c.name + ' - ' + c.sector + '</div><div class="port-stat">' + c.views + '</div><div class="port-label">vues générées</div></div>';
+    // Clic = ouvre directement la playlist YouTube
+    el.onclick = () => window.open(c.playlistUrl, '_blank');
+    const img = document.createElement('img');
+    img.className = 'port-thumb';
+    img.alt = c.name;
+    img.loading = 'eager';
+    img.src = 'images/presse/cover_' + c.id + '.jpg';
+    img.onerror = function() {
+      if (this.src.includes('.jpg')) { this.src = this.src.replace('.jpg','.png'); return; }
+      if (this.src.includes('.png')) { this.src = this.src.replace('.png','.jpeg'); return; }
+      this.style.display = 'none';
+    };
+    el.innerHTML = '';
+    el.appendChild(img);
+    el.insertAdjacentHTML('beforeend',
+      '<div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>' +
+      '<div class="port-overlay"><div class="port-client-name">' + c.name + ' - ' + c.sector + '</div><div class="port-stat">' + c.views + '</div><div class="port-label">vues générées</div></div>'
+    );
     grid.appendChild(el);
   });
 }
@@ -290,15 +303,5 @@ buildFaq();
     });
   }
   </script>
-<script>
-// Enregistrement Service Worker (cache + offline)
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(() => console.log('SW enregistré'))
-      .catch(e => console.warn('SW non enregistré:', e));
-  });
-}
-</script>
 </body>
 </html>
