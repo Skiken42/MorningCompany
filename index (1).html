@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Company : Agence UGC</title>
+<meta name="description" content="Morning Company : Agence UGC">
+<link rel="icon" type="image/png" href="images/morning/logo-tasse.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="bg-carousel">
+    <div class="bg-track" id="bgTrack1"></div>
+    <div class="bg-track" id="bgTrack2"></div>
+    <div class="bg-track" id="bgTrack3"></div>
+  </div>
+  <div class="hero-ov-dark"></div>
+  <div class="hero-ov-sides"></div>
+  <div class="hero-ov-bottom"></div>
+  <div class="hero-content">
+    <h1>Vos clients sont sur les réseaux<br><em>pourquoi pas vous ?</em></h1>
+    <p class="hero-sub">Déjà plus de 20 marques accompagnées et +25M de vues générées.</p>
+    <div class="hero-btns">
+      <a href="https://calendly.com/contact-morningcompany/30min" target="_blank" class="btn-red">Réserver un appel gratuit</a>
+      <a href="#resultats" class="btn-ghost">Voir nos résultats</a>
+    </div>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <div class="scroll-arrow-wrap"><div class="scroll-arrow"></div></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n">+25M</div><div class="stat-l">vues générées</div></div>
+  <div class="stat"><div class="stat-n">+20</div><div class="stat-l">marques accompagnées</div></div>
+  <div class="stat"><div class="stat-n">5 étoiles</div><div class="stat-l">100% avis positifs</div></div>
+  <div class="stat"><div class="stat-n">0€</div><div class="stat-l">pub payante</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="section-dark" id="services">
+  <div class="s-label s-label-w">Ce qu'on fait</div>
+  <h2 class="s-title s-title-w">Tout ce dont votre marque a besoin.</h2>
+  <p class="s-sub" style="margin-bottom:36px">Une équipe complète - créateur, monteurs, graphiste - pour gérer votre présence de A à Z.</p>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-icon">🎬</div><div class="svc-name">Production vidéo</div><div class="svc-desc">Jusqu'à 2 vidéos par jour. Scripts avec hooks optimisés, montage dynamique, voix off.</div></div>
+    <div class="svc"><div class="svc-icon">📱</div><div class="svc-name">Gestion des réseaux</div><div class="svc-desc">Instagram, TikTok, LinkedIn, YouTube, Discord. Publication planifiée, optimisation des bios.</div></div>
+    <div class="svc"><div class="svc-icon">🤖</div><div class="svc-name">Automatisation IA</div><div class="svc-desc">Bot de réponse automatique, gestion des MP abonnés, redirection des commentaires entrants.</div></div>
+    <div class="svc"><div class="svc-icon">📊</div><div class="svc-name">Stratégie et reporting</div><div class="svc-desc">Ligne éditoriale sur-mesure, calendrier de contenu, reporting mensuel chiffré.</div></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section-dark" id="resultats">
+  <div class="s-label s-label-w">Portfolio</div>
+  <h2 class="s-title s-title-w">Des vidéos qui performent.</h2>
+  <p class="s-sub" style="margin-bottom:32px">Cliquez sur une marque pour voir toutes les vidéos réalisées.</p>
+  <div class="port-grid" id="portGrid"></div>
+</section>
+
+<!-- AVIS -->
+<section class="section-gray" id="avis-section">
+  <div class="s-label s-label-dk">Avis clients</div>
+  <h2 class="s-title s-title-dk">100% de clients satisfaits.</h2>
+  <p class="s-sub s-sub-dk" style="margin-bottom:32px">Ce que nos clients disent de notre travail.</p>
+  <div class="avis-wrap"><div class="avis-track" id="avisTrack"></div></div>
+</section>
+
+<!-- OFFRES -->
+<section class="section-dark" id="offres">
+  <div class="s-label s-label-w">Nos offres</div>
+  <h2 class="s-title s-title-w" style="max-width:640px;margin-bottom:36px">Parce qu'une offre personnalisée sera forcément la meilleure pour vous.</h2>
+  <div class="pricing-wrap">
+    <div class="pricing-col pricing-col-left">
+      <div class="pricing-headline">Des solutions personnalisées<br><em>dès 1 000€ par mois</em></div>
+      <p class="pricing-tagline">Chaque accompagnement est construit autour de vos objectifs. On en parle ensemble en 30 minutes, sans engagement.</p>
+      <a href="https://calendly.com/contact-morningcompany/30min" target="_blank" class="pricing-cta">Réserver un appel gratuit</a>
+    </div>
+    <div class="pricing-col pricing-col-right">
+      <div class="pricing-feat"><div class="pricing-feat-icon">🎬</div><div><div class="pricing-feat-text">Jusqu'à 2 vidéos par jour</div><div class="pricing-feat-sub">Shorts, Reels, TikToks optimisés</div></div></div>
+      <div class="pricing-feat"><div class="pricing-feat-icon">📱</div><div><div class="pricing-feat-text">Gestion complète des réseaux</div><div class="pricing-feat-sub">Instagram, TikTok, LinkedIn, YouTube</div></div></div>
+      <div class="pricing-feat"><div class="pricing-feat-icon">🤖</div><div><div class="pricing-feat-text">Bot réponse automatique</div><div class="pricing-feat-sub">MP, commentaires, abonnés Instagram</div></div></div>
+      <div class="pricing-feat"><div class="pricing-feat-icon">📊</div><div><div class="pricing-feat-text">Reporting mensuel chiffré</div><div class="pricing-feat-sub">Vues, engagement, KPIs définis ensemble</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-gray faq-section" id="contact">
+  <div class="s-label s-label-dk">Questions fréquentes</div>
+  <h2 class="s-title s-title-dk" style="margin-bottom:32px">Vous avez des questions ?</h2>
+  <div class="faq-grid" id="faqGrid"></div>
+  <div class="faq-contact">
+    <div>
+      <div class="faq-contact-text">Vous ne trouvez pas la réponse ?</div>
+      <div class="faq-contact-sub">On répond en moins de 24h.</div>
+    </div>
+    <div class="faq-contact-actions">
+      <a href="https://calendly.com/contact-morningcompany/30min" target="_blank" class="faq-btn-cal">Réserver un appel</a>
+      <a href="mailto:contact@morningcompany.fr" class="faq-btn-mail">Nous écrire</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script>
+/* CONFIG */
+const portfolio = [
+  { id:'paladium',     name:'Paladium',        sector:'Gaming',     views:'592k', bg:'linear-gradient(160deg,#0d2b1a,#1a4d2e)', stats:[{n:'592k',l:'vues'},{n:'En cours',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=IuIV3Cb0Mqs&list=PL3CdIvZmviUSHH9ybdQ5RD9KAFREJdEhq' },
+  { id:'nationsglory', name:'NationsGlory',    sector:'Gaming',     views:'312k', bg:'linear-gradient(160deg,#0d1b2b,#1a2d4d)', stats:[{n:'312k',l:'vues'},{n:'En cours',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=nqMRZmwl0QE&list=PL3CdIvZmviURuCTDnUMGKYgmgR4g9nV1Y' },
+  { id:'legendaires',  name:'Les Légendaires', sector:'Gaming',     views:'647k', bg:'linear-gradient(160deg,#2b0d15,#4d1a24)', stats:[{n:'647k',l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/@tsumablox' },
+  { id:'hypenetwork',  name:'HypeNetwork',     sector:'Gaming',     views:'706k', bg:'linear-gradient(160deg,#2b1a0d,#4d3318)', stats:[{n:'706k',l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=eFtxpiRCwdw&list=PL3CdIvZmviUTRMnwNWKeMuS2lHwNVv850' },
+  { id:'badlands',     name:'BadLands',        sector:'Gaming',     views:'33k',  bg:'linear-gradient(160deg,#1a0d2b,#2e1a4d)', stats:[{n:'33k', l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=eNBKplVTTgE&list=PL3CdIvZmviUQr-JhVwPgVXypGFdB-CYja' },
+  { id:'macoloc',      name:'Macoloc',         sector:'Immobilier', views:'43k',  bg:'linear-gradient(160deg,#0d2b2b,#1a4d4d)', stats:[{n:'43k', l:'vues'},{n:'Terminé',l:'statut'}],  playlistUrl:'https://www.youtube.com/watch?v=rICJ7c6M8hc&list=PL3CdIvZmviUR1zTOG0r3VnYJJTfpMh7jV' },
+];
+const nbAvis = 4;
+const faqData = [
+  { q:'Combien de temps pour voir des résultats ?', a:"En général, les premiers résultats significatifs apparaissent en moins de 4 semaines. C'est pourquoi nous recommandons de démarrer sur au moins 3 mois pour profiter pleinement de l'effet composé que proposent les réseaux sociaux." },
+  { q:'Est-ce que je dois apparaître sur la vidéo ?', a:"Non ! Enfin, comme vous le souhaitez. Si vous voulez créer un lien fort avec votre audience en montrant votre visage, on peut tout à fait le faire. Dans tous les cas, on se charge de tout : script, production, montage et publication." },
+  { q:'Comment se passe le suivi au quotidien ?', a:'Vous avez un espace Discord dédié et un espace client en ligne. On livre, vous validez, on publie. Visibilité totale sur chaque action en temps réel.' },
+  { q:'Puis-je arrêter à tout moment ?', a:'Nos contrats sont mensuels sans engagement longue durée. Vous pouvez arrêter avec un préavis de 30 jours, sans frais ni justification.' },
+  { q:'Travaillez-vous avec tous les secteurs ?', a:"On travaille principalement avec le gaming, l'immobilier, la formation et la tech. Mais on s'adapte selon les projets." },
+  { q:'Que se passe-t-il après le setup ?', a:'Après la mise en place (1 à 2 semaines), la production démarre immédiatement. Un reporting mensuel complet vous est envoyé en fin de mois.' },
+];
+
+/* REEL */
+function buildReel() {
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const slowNet = conn && (conn.saveData || ['slow-2g','2g','3g'].includes(conn.effectiveType));
+  const lines = [
+    { id:'bgTrack1', order:[1,2,3,4,5,6,7,8,9] },
+    { id:'bgTrack2', order:[4,5,6,7,8,9,1,2,3] },
+    { id:'bgTrack3', order:[7,8,9,1,2,3,4,5,6] },
+  ];
+  const activeLines = slowNet ? [lines[0]] : lines;
+  activeLines.forEach(line => {
+    const track = document.getElementById(line.id);
+    if (!track) return;
+    const order = slowNet ? line.order.slice(0,3) : line.order;
+    [...order, ...order].forEach((n, idx) => {
+      const video = document.createElement('video');
+      video.muted = true; video.loop = true; video.playsInline = true;
+      video.setAttribute('playsinline','');
+      video.preload = idx < 3 ? 'auto' : 'none';
+      video.src = 'videos/reels/reel' + n + '.mp4';
+      video.autoplay = true;
+      track.appendChild(video);
+    });
+  });
+}
+
+/* PORTFOLIO */
+function buildPortfolio() {
+  const grid = document.getElementById('portGrid');
+  portfolio.forEach(c => {
+    const el = document.createElement('div');
+    el.className = 'port-card';
+    el.onclick = () => window.open(c.playlistUrl, '_blank');
+    const img = document.createElement('img');
+    img.className = 'port-thumb';
+    img.alt = c.name;
+    img.loading = 'eager';
+    img.src = 'images/presse/cover_' + c.id + '.jpg';
+    img.onerror = function() {
+      if (this.src.includes('.jpg')) { this.src = this.src.replace('.jpg','.png'); return; }
+      if (this.src.includes('.png')) { this.src = this.src.replace('.png','.jpeg'); return; }
+      this.style.display = 'none';
+    };
+    el.appendChild(img);
+    el.insertAdjacentHTML('beforeend',
+      '<div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>' +
+      '<div class="port-overlay"><div class="port-client-name">' + c.name + ' - ' + c.sector + '</div><div class="port-stat">' + c.views + '</div><div class="port-label">vues générées</div></div>'
+    );
+    grid.appendChild(el);
+  });
+}
+
+/* AVIS */
+function buildAvis() {
+  const track = document.getElementById('avisTrack');
+  const srcs = Array.from({length: nbAvis}, (_, i) => 'images/avis/avis' + (i+1) + '.png');
+  [...srcs, ...srcs].forEach(src => {
+    const img = document.createElement('img');
+    img.className = 'avis-img'; img.src = src; img.alt = 'Avis client'; img.loading = 'lazy';
+    track.appendChild(img);
+  });
+}
+
+/* FAQ */
+function buildFaq() {
+  const grid = document.getElementById('faqGrid');
+  const col1 = document.createElement('div'); col1.className = 'faq-col';
+  const col2 = document.createElement('div'); col2.className = 'faq-col';
+  grid.appendChild(col1); grid.appendChild(col2);
+  faqData.forEach((f, idx) => {
+    const el = document.createElement('div');
+    el.className = 'faq-item';
+    const q = document.createElement('div');
+    q.className = 'faq-q';
+    q.innerHTML = f.q + ' <span class="faq-q-chevron">▼</span>';
+    q.addEventListener('click', () => el.classList.toggle('open'));
+    const a = document.createElement('div');
+    a.className = 'faq-a'; a.textContent = f.a;
+    el.appendChild(q); el.appendChild(a);
+    (idx % 2 === 0 ? col1 : col2).appendChild(el);
+  });
+}
+
+/* NAV SCROLL */
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+  const hint = document.getElementById('scrollHint');
+  if (hint) hint.classList.toggle('hidden', window.scrollY > 80);
+});
+
+/* LOAD COMPOSANTS */
+async function loadComponent(id, file) {
+  try {
+    const res = await fetch(file);
+    const html = await res.text();
+    document.getElementById(id).outerHTML = html;
+  } catch(e) { console.warn('Composant non chargé:', file); }
+}
+
+/* INIT */
+buildReel();
+buildPortfolio();
+buildAvis();
+buildFaq();
+Promise.all([
+  loadComponent('nav-placeholder', 'nav.html'),
+  loadComponent('footer-placeholder', 'footer.html'),
+]);
+</script>
+</body>
+</html>

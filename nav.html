@@ -1,0 +1,29 @@
+<nav id="navbar">
+  <a href="/index.html" class="nav-logo">
+    <img class="logo-desktop" src="images/morning/logo-tasse.png" alt="Morning Company">
+    <img class="logo-mobile"  src="images/morning/logo-tasse.png" alt="Morning Company">
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html#resultats">Résultats</a>
+    <a href="index.html#avis-section">Avis</a>
+    <a href="index.html#offres">Offres</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="login.html" class="nav-btn-client">Espace client</a>
+    <a href="https://calendly.com/contact-morningcompany/30min" target="_blank" class="nav-cta">Travailler avec nous</a>
+    <button class="nav-burger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<script>
+// Nav scroll effect — réinjecté après chargement du composant
+(function() {
+  const nav = document.getElementById('navbar');
+  if (!nav) return;
+  function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 50); }
+  window.addEventListener('scroll', updateNav);
+  updateNav();
+})();
+</script>
