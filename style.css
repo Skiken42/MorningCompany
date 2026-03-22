@@ -142,7 +142,7 @@ section { padding: 80px 6%; }
 .port-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
 .port-card { aspect-ratio: 9/16; border-radius: 14px; overflow: hidden; position: relative; cursor: pointer; background: #1a1a1a; transition: transform .25s, box-shadow .25s; }
 .port-card:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(0,0,0,.5); }
-.port-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+.port-thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; background: #1a1a1a; }
 .port-bg-fallback { position: absolute; inset: 0; }
 .port-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to top, rgba(0,0,0,.9) 0%, transparent 50%); display: flex; flex-direction: column; justify-content: flex-end; padding: 14px; pointer-events: none; }
 .port-client-name { font-size: 10px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
@@ -210,12 +210,12 @@ section { padding: 80px 6%; }
 .faq-section { background: var(--gray); }
 .faq-section .s-title { color: var(--dark); }
 .faq-section .s-label { color: var(--red); }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px; }
-.faq-item { background: var(--white); border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; cursor: pointer; }
+.faq-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+.faq-item { background: var(--white); border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; cursor: pointer; align-self: start; }
 .faq-q { font-weight: 700; font-size: 14px; color: var(--dark); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .faq-q-chevron { flex-shrink: 0; color: var(--red); font-size: 12px; transition: transform .2s; }
 .faq-item.open .faq-q-chevron { transform: rotate(180deg); }
-.faq-a { font-size: 13px; color: #666; line-height: 1.7; margin-top: 12px; display: none; }
+.faq-a { font-size: 13px; color: #666; line-height: 1.7; margin-top: 12px; display: none; animation: fadeUp .2s ease; }
 .faq-item.open .faq-a { display: block; }
 .faq-contact { background: var(--dark); border-radius: 14px; padding: 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
 .faq-contact-text { font-weight: 900; font-size: clamp(18px,2.5vw,26px); color: var(--white); margin-bottom: 6px; }
@@ -271,44 +271,12 @@ footer { background: #080808; padding: 40px 6%; display: grid; grid-template-col
 .footer-discord:hover { opacity: .85; }
 .footer-center { display: flex; justify-content: center; }
 .footer-right { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
-.yt-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
-}
 
-.yt-card {
-  position: relative;
-  aspect-ratio: 9/16;
-  border-radius: 14px;
-  overflow: hidden;
-  cursor: pointer;
-  background: #111;
+/* Optimisation connexion lente */
+@media (prefers-reduced-motion: reduce) {
+  .bg-track, .avis-track { animation-duration: 0.01ms !important; }
+  * { transition-duration: 0.01ms !important; }
 }
-
-.yt-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.yt-play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background: rgba(232,25,44,0.9);
-  border-radius: 50%;
-}
-
-.yt-play::after {
-  content: '';
-  position: absolute;
-  left: 19px;
-  top: 15px;
-  border-left: 14px solid white;
-  border-top: 9px solid transparent;
-  border-bottom: 9px solid transparent;
-}
+/* Image placeholder pendant chargement */
+.port-thumb { background: #1a1a1a; }
+.port-card[data-loaded="false"] .port-thumb { opacity: 0; }
