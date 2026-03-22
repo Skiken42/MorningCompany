@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace client — Morning Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #E8192C; --dark: #0D0D0D; --panel: #141414;
+  --border: rgba(255,255,255,0.07); --muted: rgba(255,255,255,0.4);
+  --font: 'Nunito', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--dark); color: #fff; min-height: 100vh; display: flex; }
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 240px; flex-shrink: 0; background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 10;
+}
+.sidebar-logo {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 900; font-size: 15px; color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+.sidebar-logo span { color: var(--red); }
+.sidebar-client {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+.client-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--red); display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 14px; flex-shrink: 0;
+}
+.client-name { font-size: 14px; font-weight: 700; color: #fff; }
+.client-pack { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.sidebar-nav { flex: 1; padding: 12px 0; overflow-y: auto; }
+.nav-section { padding: 8px 20px 4px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.25); text-transform: uppercase; letter-spacing: .1em; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; font-size: 13px; font-weight: 600;
+  color: var(--muted); cursor: pointer; transition: all .15s;
+  border-left: 3px solid transparent; text-decoration: none;
+}
+.nav-item:hover { color: #fff; background: rgba(255,255,255,0.04); }
+.nav-item.active { color: #fff; background: rgba(232,25,44,0.1); border-left-color: var(--red); }
+.nav-item-icon { font-size: 16px; width: 20px; text-align: center; }
+.sidebar-bottom {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+}
+.logout-btn {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.35);
+  cursor: pointer; transition: color .2s; text-decoration: none;
+}
+.logout-btn:hover { color: var(--red); }
+
+/* ===== MAIN ===== */
+.main { margin-left: 240px; flex: 1; min-height: 100vh; }
+.main-header {
+  padding: 24px 32px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; background: rgba(13,13,13,0.95);
+  backdrop-filter: blur(12px); z-index: 5;
+}
+.main-title { font-size: 20px; font-weight: 900; color: #fff; }
+.main-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.header-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(232,25,44,0.1); border: 1px solid rgba(232,25,44,0.2);
+  padding: 6px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; color: var(--red);
+}
+.header-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--red); animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+.main-body { padding: 28px 32px; }
+
+/* ===== METRIC CARDS ===== */
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 14px; margin-bottom: 28px; }
+.metric-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px; position: relative; overflow: hidden;
+}
+.metric-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: var(--red);
+}
+.metric-label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.metric-value { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
+.metric-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.metric-trend { font-size: 12px; font-weight: 700; color: #4ade80; margin-top: 6px; }
+.metric-trend.down { color: var(--red); }
+
+/* ===== SECTIONS ===== */
+.section { margin-bottom: 28px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.section-head-title { font-size: 15px; font-weight: 800; color: #fff; }
+.section-head-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.section-link { font-size: 12px; font-weight: 700; color: var(--red); text-decoration: none; }
+
+/* ===== VIDÉOS ===== */
+.videos-grid { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; }
+.videos-grid::-webkit-scrollbar { height: 3px; }
+.videos-grid::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+.video-card {
+  flex-shrink: 0; width: 140px; aspect-ratio: 9/16;
+  border-radius: 12px; overflow: hidden; position: relative;
+  background: var(--panel); border: 1px solid var(--border); cursor: pointer;
+  transition: transform .2s;
+}
+.video-card:hover { transform: scale(1.03); }
+.video-card-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:32px; }
+.video-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.85) 0%, transparent 55%);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 10px;
+}
+.video-card-title { font-size: 11px; font-weight: 700; color: #fff; }
+.video-card-views { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 2px; }
+.video-card-status {
+  position: absolute; top: 8px; right: 8px;
+  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 20px;
+}
+.status-done { background: rgba(74,222,128,.15); color: #4ade80; }
+.status-pending { background: rgba(251,191,36,.15); color: #fbbf24; }
+.status-review { background: rgba(232,25,44,.15); color: var(--red); }
+
+/* ===== PLANNING ===== */
+.planning-list { display: flex; flex-direction: column; gap: 8px; }
+.planning-item {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+}
+.planning-date {
+  flex-shrink: 0; text-align: center; width: 44px;
+  background: rgba(255,255,255,.05); border-radius: 8px; padding: 6px 4px;
+}
+.planning-date-day { font-size: 18px; font-weight: 900; color: #fff; line-height: 1; }
+.planning-date-month { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.planning-info { flex: 1; }
+.planning-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.planning-desc { font-size: 12px; color: var(--muted); }
+.planning-type {
+  flex-shrink: 0; font-size: 10px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+}
+.type-video { background: rgba(232,25,44,.15); color: var(--red); }
+.type-post { background: rgba(99,153,34,.15); color: #8bc34a; }
+.type-story { background: rgba(66,133,244,.15); color: #4285f4; }
+
+/* ===== REPORTING ===== */
+.report-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; }
+.report-card {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; display: flex; align-items: center; gap: 12px;
+}
+.report-icon { font-size: 22px; flex-shrink: 0; }
+.report-n { font-size: 20px; font-weight: 900; color: #fff; }
+.report-l { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* ===== MESSAGES ===== */
+.msg-list { display: flex; flex-direction: column; gap: 8px; }
+.msg-item {
+  background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px;
+}
+.msg-avatar {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: var(--red); display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900;
+}
+.msg-content { flex: 1; }
+.msg-sender { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+.msg-time { font-size: 11px; color: var(--muted); font-weight: 400; }
+.msg-text { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; }
+.msg-unread { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 4px; }
+
+/* ===== TABS ===== */
+.tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 0; }
+.tab-btn {
+  font-size: 13px; font-weight: 700; color: var(--muted);
+  padding: 10px 16px; cursor: pointer; border-bottom: 2px solid transparent;
+  transition: all .15s; background: none; border-top: none; border-left: none; border-right: none;
+}
+.tab-btn.on { color: #fff; border-bottom-color: var(--red); }
+.tab-content { display: none; }
+.tab-content.on { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .sidebar { width: 0; overflow: hidden; }
+  .main { margin-left: 0; }
+  .main-body { padding: 20px 16px; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-logo">Morning<span>☕</span>Company</div>
+  <div class="sidebar-client">
+    <div class="client-avatar">VG</div>
+    <div>
+      <div class="client-name">Visionarist</div>
+      <div class="client-pack">Pack Growth · Actif</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">Principal</div>
+    <a class="nav-item active" href="#">
+      <span class="nav-item-icon">📊</span> Tableau de bord
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">🎬</span> Mes vidéos
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">📅</span> Planning
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">📈</span> Statistiques
+    </a>
+    <div class="nav-section">Collaboration</div>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">✅</span> Validations
+      <span style="margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px">2</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">💬</span> Messages
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">📁</span> Ressources
+    </a>
+    <div class="nav-section">Compte</div>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">📋</span> Mon offre
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-item-icon">🔔</span> Notifications
+    </a>
+  </nav>
+  <div class="sidebar-bottom">
+    <a href="index.html" class="logout-btn">
+      <span>←</span> Déconnexion
+    </a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="main-header">
+    <div>
+      <div class="main-title">Bonjour, Damien 👋</div>
+      <div class="main-sub">Voici l'état de votre compte — mars 2026</div>
+    </div>
+    <div class="header-badge">Pack Growth · Actif</div>
+  </div>
+
+  <div class="main-body">
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Vues ce mois</div>
+        <div class="metric-value">48,2k</div>
+        <div class="metric-trend">↑ +12% vs mois dernier</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Vidéos livrées</div>
+        <div class="metric-value">12</div>
+        <div class="metric-sub">sur 16 prévues</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Posts publiés</div>
+        <div class="metric-value">9</div>
+        <div class="metric-sub">sur 12 prévus</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Engagement moyen</div>
+        <div class="metric-value">4,8%</div>
+        <div class="metric-trend">↑ +0.6% vs mois dernier</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Abonnés gagnés</div>
+        <div class="metric-value">+234</div>
+        <div class="metric-sub">ce mois</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">En attente de validation</div>
+        <div class="metric-value" style="color:var(--red)">2</div>
+        <div class="metric-sub">vidéos à valider</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn on" onclick="switchTab(this,'t-videos')">Vidéos récentes</button>
+      <button class="tab-btn" onclick="switchTab(this,'t-planning')">Planning</button>
+      <button class="tab-btn" onclick="switchTab(this,'t-messages')">Messages</button>
+    </div>
+
+    <!-- TAB : VIDÉOS -->
+    <div class="tab-content on" id="t-videos">
+      <div class="section">
+        <div class="section-head">
+          <div>
+            <div class="section-head-title">Vidéos du mois</div>
+            <div class="section-head-sub">Scroll horizontal pour voir toutes les vidéos</div>
+          </div>
+          <a href="#" class="section-link">Voir tout →</a>
+        </div>
+        <div class="videos-grid">
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#1a2b0d,#2e4d1a)">🤖</div>
+            <div class="video-card-status status-review">À valider</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">IA pour PME #3</div>
+              <div class="video-card-views">En attente</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#0d1b2b,#1a2d4d)">💡</div>
+            <div class="video-card-status status-review">À valider</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">Automatisation #2</div>
+              <div class="video-card-views">En attente</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#2b0d15,#4d1a24)">🚀</div>
+            <div class="video-card-status status-done">Publié</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">Visionarist présentation</div>
+              <div class="video-card-views">12,4k vues</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#2b1a0d,#4d3318)">⚡</div>
+            <div class="video-card-status status-done">Publié</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">IA pour PME #2</div>
+              <div class="video-card-views">8,7k vues</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#1a0d2b,#2e1a4d)">🔧</div>
+            <div class="video-card-status status-done">Publié</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">Docsafe intro</div>
+              <div class="video-card-views">6,2k vues</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#0d2b2b,#1a4d4d)">📊</div>
+            <div class="video-card-status status-done">Publié</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">IA pour PME #1</div>
+              <div class="video-card-views">9,1k vues</div>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-card-ph" style="background:linear-gradient(135deg,#1a2b1a,#2e4d2e)">🌿</div>
+            <div class="video-card-status status-pending">En production</div>
+            <div class="video-card-overlay">
+              <div class="video-card-title">Clip #8</div>
+              <div class="video-card-views">En cours</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB : PLANNING -->
+    <div class="tab-content" id="t-planning">
+      <div class="section">
+        <div class="section-head">
+          <div><div class="section-head-title">Planning mars 2026</div></div>
+          <a href="#" class="section-link">Voir calendrier →</a>
+        </div>
+        <div class="planning-list">
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">24</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">IA pour PME #3 — Livraison pour validation</div><div class="planning-desc">Script validé le 18/03 · Montage terminé</div></div>
+            <div class="planning-type type-video">Vidéo</div>
+          </div>
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">25</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">Post LinkedIn — Résultats semaine</div><div class="planning-desc">Visuel prêt · Publication programmée 9h</div></div>
+            <div class="planning-type type-post">Post</div>
+          </div>
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">26</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">Stories Instagram — Behind the scenes</div><div class="planning-desc">3 stories · Publication 14h</div></div>
+            <div class="planning-type type-story">Story</div>
+          </div>
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">27</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">Automatisation #2 — Livraison pour validation</div><div class="planning-desc">Script en cours de finalisation</div></div>
+            <div class="planning-type type-video">Vidéo</div>
+          </div>
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">28</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">Post LinkedIn — Conseil contenu</div><div class="planning-desc">Carrousel 5 slides · À approuver</div></div>
+            <div class="planning-type type-post">Post</div>
+          </div>
+          <div class="planning-item">
+            <div class="planning-date"><div class="planning-date-day">31</div><div class="planning-date-month">Mars</div></div>
+            <div class="planning-info"><div class="planning-title">Reporting mensuel mars 2026</div><div class="planning-desc">Envoi du rapport complet par email</div></div>
+            <div class="planning-type" style="background:rgba(232,25,44,.12);color:var(--red)">Rapport</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB : MESSAGES -->
+    <div class="tab-content" id="t-messages">
+      <div class="section">
+        <div class="section-head">
+          <div><div class="section-head-title">Messages récents</div></div>
+          <a href="#" class="section-link">Voir tout →</a>
+        </div>
+        <div class="msg-list">
+          <div class="msg-item">
+            <div class="msg-avatar">TC</div>
+            <div class="msg-content">
+              <div class="msg-sender">Thibault · Morning Company <span class="msg-time">Aujourd'hui 10:23</span></div>
+              <div class="msg-text">Bonjour Damien, les 2 vidéos de la semaine sont prêtes pour validation. Tu peux les retrouver dans l'onglet "À valider". N'hésite pas si tu as des retours !</div>
+            </div>
+            <div class="msg-unread"></div>
+          </div>
+          <div class="msg-item">
+            <div class="msg-avatar">TC</div>
+            <div class="msg-content">
+              <div class="msg-sender">Thibault · Morning Company <span class="msg-time">Hier 16:45</span></div>
+              <div class="msg-text">Le script de "IA pour PME #4" est en cours de rédaction. Je t'envoie ça d'ici demain matin pour validation avant production.</div>
+            </div>
+          </div>
+          <div class="msg-item">
+            <div class="msg-avatar" style="background:#444">DG</div>
+            <div class="msg-content">
+              <div class="msg-sender">Damien Gaillard <span class="msg-time">Hier 14:12</span></div>
+              <div class="msg-text">Super, les stats de cette semaine sont encourageantes ! La vidéo "Visionarist présentation" performe vraiment bien. On continue sur cette lancée 👍</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAPPORT RAPIDE -->
+    <div class="section">
+      <div class="section-head">
+        <div><div class="section-head-title">Résumé du mois</div></div>
+      </div>
+      <div class="report-grid">
+        <div class="report-card"><div class="report-icon">👁️</div><div><div class="report-n">48,2k</div><div class="report-l">vues totales</div></div></div>
+        <div class="report-card"><div class="report-icon">❤️</div><div><div class="report-n">2 140</div><div class="report-l">interactions</div></div></div>
+        <div class="report-card"><div class="report-icon">👤</div><div><div class="report-n">+234</div><div class="report-l">nouveaux abonnés</div></div></div>
+        <div class="report-card"><div class="report-icon">💬</div><div><div class="report-n">312</div><div class="report-l">commentaires</div></div></div>
+        <div class="report-card"><div class="report-icon">🔗</div><div><div class="report-n">89</div><div class="report-l">clics profil</div></div></div>
+        <div class="report-card"><div class="report-icon">📤</div><div><div class="report-n">56</div><div class="report-l">partages</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+}
+</script>
+</body>
+</html>
