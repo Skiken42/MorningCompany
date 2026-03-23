@@ -11,41 +11,14 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous">
-</script>
-<script> 
-$(function(){
-  $("#header").load("header.html"); 
-  $("#footer").load("footer.html"); 
-});
-</script> 
-<!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    <img class="logo-desktop" src="images/morning/logo-tasse.png" alt="Morning Company">
-    <img class="logo-mobile"  src="images/morning/logo-tasse.png" alt="Morning Company">
-  </a>
-  <div class="nav-links" id="navLinks">
-    <a href="#resultats">Résultats</a>
-    <a href="#avis-section">Avis</a>
-    <a href="#offres">Offres</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <div class="nav-right">
-    <a href="https://calendly.com/contact-morningcompany/30min" target="_blank" class="nav-cta">Travailler avec nous</a>
-    <button class="nav-burger" id="burgerBtn"><span></span><span></span><span></span></button>
-  </div>
-</nav>
+<script src="load.js"></script>
+<div id="header"></div>
 
 <!-- HERO -->
 <div class="hero">
   <div class="bg-carousel">
     <div class="bg-track" id="bgTrack1"></div>
     <div class="bg-track" id="bgTrack2"></div>
-    <div class="bg-track" id="bgTrack3"></div>
   </div>
   <div class="hero-ov-dark"></div>
   <div class="hero-ov-sides"></div>
@@ -90,32 +63,32 @@ $(function(){
   <h2 class="s-title s-title-w">Des vidéos qui performent.</h2>
   <p class="s-sub" style="margin-bottom:32px">Cliquez sur une marque pour voir toutes les vidéos réalisées.</p>
   <div class="port-grid">
-    <div class="port-card" onclick="window.open('https://www.youtube.com/watch?v=IuIV3Cb0Mqs&list=PL3CdIvZmviUSHH9ybdQ5RD9KAFREJdEhq','_blank')">
+    <div class="port-card" data-url="https://www.youtube.com/watch?v=IuIV3Cb0Mqs&list=PL3CdIvZmviUSHH9ybdQ5RD9KAFREJdEhq">
       <img class="port-thumb" src="images/presse/cover_paladium.jpg" alt="Paladium" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">Paladium - Gaming</div><div class="port-stat">592k</div><div class="port-label">vues générées</div></div>
     </div>
-    <div class="port-card" onclick="window.open('https://www.youtube.com/watch?v=nqMRZmwl0QE&list=PL3CdIvZmviURuCTDnUMGKYgmgR4g9nV1Y','_blank')">
+    <div class="port-card" data-url="https://www.youtube.com/watch?v=nqMRZmwl0QE&list=PL3CdIvZmviURuCTDnUMGKYgmgR4g9nV1Y">
       <img class="port-thumb" src="images/presse/cover_nationsglory.jpg" alt="NationsGlory" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">NationsGlory - Gaming</div><div class="port-stat">312k</div><div class="port-label">vues générées</div></div>
     </div>
-    <div class="port-card" onclick="window.open('https://www.youtube.com/@tsumablox','_blank')">
+    <div class="port-card" data-url="https://www.youtube.com/@tsumablox">
       <img class="port-thumb" src="images/presse/cover_legendaires.jpg" alt="Les Légendaires" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">Les Légendaires - Gaming</div><div class="port-stat">647k</div><div class="port-label">vues générées</div></div>
     </div>
-    <div class="port-card" onclick="window.open('https://www.youtube.com/watch?v=eFtxpiRCwdw&list=PL3CdIvZmviUTRMnwNWKeMuS2lHwNVv850','_blank')">
+    <div class="port-card" data-url="https://www.youtube.com/watch?v=eFtxpiRCwdw&list=PL3CdIvZmviUTRMnwNWKeMuS2lHwNVv850">
       <img class="port-thumb" src="images/presse/cover_hypenetwork.jpg" alt="HypeNetwork" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">HypeNetwork - Gaming</div><div class="port-stat">706k</div><div class="port-label">vues générées</div></div>
     </div>
-    <div class="port-card" onclick="window.open('https://www.youtube.com/watch?v=eNBKplVTTgE&list=PL3CdIvZmviUQr-JhVwPgVXypGFdB-CYja','_blank')">
+    <div class="port-card" data-url="https://www.youtube.com/watch?v=eNBKplVTTgE&list=PL3CdIvZmviUQr-JhVwPgVXypGFdB-CYja">
       <img class="port-thumb" src="images/presse/cover_badlands.jpg" alt="BadLands" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">BadLands - Gaming</div><div class="port-stat">33k</div><div class="port-label">vues générées</div></div>
     </div>
-    <div class="port-card" onclick="window.open('https://www.youtube.com/watch?v=rICJ7c6M8hc&list=PL3CdIvZmviUR1zTOG0r3VnYJJTfpMh7jV','_blank')">
+    <div class="port-card"  data-url="https://www.youtube.com/watch?v=rICJ7c6M8hc&list=PL3CdIvZmviUR1zTOG0r3VnYJJTfpMh7jV">
       <img class="port-thumb" src="images/presse/cover_macoloc.jpg" alt="Macoloc" loading="eager" onerror="if(this.src.includes('.jpg')){this.src=this.src.replace('.jpg','.png')}else{this.style.display='none'}">
       <div class="port-card-cursor"><div class="port-card-cursor-circle">▶</div></div>
       <div class="port-overlay"><div class="port-client-name">Macoloc - Immobilier</div><div class="port-stat">43k</div><div class="port-label">vues générées</div></div>
@@ -223,8 +196,7 @@ $(function(){
 </section>
 
 <!-- FOOTER -->
-<div id="footer"></div>
-
+<div class="footer" id="footer"></div>
 
 <script src="functions.js"></script>
 </body>

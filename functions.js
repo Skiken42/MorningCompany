@@ -3,9 +3,8 @@ function buildReel() {
   const conn = navigator.connection;
   const slow = conn && (conn.saveData || ['slow-2g','2g','3g'].includes(conn.effectiveType));
   const lines = [
-    {id:'bgTrack1', order:[1,2,3,4,5,6,7,8,9]},
-    {id:'bgTrack2', order:[4,5,6,7,8,9,1,2,3]},
-    {id:'bgTrack3', order:[7,8,9,1,2,3,4,5,6]},
+    {id:'bgTrack1', order:[1,2,3,4,5]},
+    {id:'bgTrack2', order:[5,4,3,2,1]},
   ];
   (slow ? [lines[0]] : lines).forEach(line => {
     const track = document.getElementById(line.id);
@@ -33,10 +32,21 @@ function toggleNav() {
   document.getElementById('navLinks')?.classList.toggle('open');
 }
 
-// Ajouter les classes sur les svc pour fond blanc
-document.querySelectorAll('.svc-light').forEach(el => {
-  el.style.background = 'var(--white)';
-  el.style.borderColor = '#e5e5e5';
-});
 
-buildReel();
+
+document.querySelectorAll('.port-card').forEach(card => {
+  card.addEventListener('click', () => {
+    window.open(card.dataset.url, '_blank');
+  });
+});
+document.addEventListener("DOMContentLoaded", () => {
+  buildReel();
+});
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const video = entry.target;
+      if (!video.src) video.src = video.dataset.src;
+    }
+  });
+});
