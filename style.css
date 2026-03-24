@@ -25,9 +25,31 @@ nav.scrolled { background:rgba(13,13,13,0.97); backdrop-filter:blur(14px); borde
 /* ── BURGER ── */
 .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
 .nav-burger span { width:24px; height:2px; background:white; display:block; transition:all .3s ease; transform-origin:center; }
+
+/* Animation vers la croix */
 .nav-burger.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
 .nav-burger.active span:nth-child(2) { opacity:0; }
 .nav-burger.active span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* Responsive Burger */
+@media (max-width: 768px) {
+  #navLinks {
+    display: none; /* CACHÉ par défaut */
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.95);
+    z-index: 999;
+  }
+
+  /* AFFICHÉ seulement quand la classe .open est là */
+  #navLinks.open {
+    display: flex !important;
+  }
+}
 
 /* ── NAV ANIMATION ── */
 nav { transition:background .3s ease, transform .3s ease, opacity .3s ease; }
@@ -280,20 +302,44 @@ section { padding:80px 6%; }
   border-radius: 12px;
   overflow: hidden;
 }
+.mobile-cal-btn {
+    display: none;
+    width: 100%;
+    box-sizing: border-box; /* IMPORTANT : inclut le padding/border dans la largeur */
+    margin-top: 16px;
+    padding: 16px; /* Ajuste la taille interne du bouton */
+    background: var(--red);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.mobile-cal-btn:active {
+    transform: scale(0.98);
+}
 
 /* MOBILE ≤700px : une seule colonne */
-@media (max-width:700px) {
+@media (max-width:1000px) {
   .pricing-wrap {
     grid-template-columns: 1fr;
-    gap: 0; /* pas d'écart pour mobile */
+    gap: 0;
+    padding: 24px; /* Réduire un peu le padding sur mobile pour gagner de la place */
   }
+
   .pricing-col-right {
-    align-items: stretch;
-    justify-content: flex-start;
+    display: block; /* Simplifie le flux sur mobile */
+    width: 100%;
   }
+
   #calendly-embed {
-    max-width: 100%;
-    margin-top: 16px;
+    display: none;
+  }
+
+  .mobile-cal-btn {
+    display: block;
   }
 }
 /* ── FAQ ── */
@@ -333,7 +379,21 @@ section { padding:80px 6%; }
 .faq-btn-mail { font-size:14px; font-weight:700; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,.2); padding:12px 22px; border-radius:8px; text-decoration:none; transition:all .2s; }
 .faq-btn-mail:hover { border-color:rgba(255,255,255,.5); }
 
+@media (max-width: 804px) {
+  .faq-contact {
+    padding: 24px;
+  }
 
+  .faq-contact-actions {
+    width: 100%;
+  }
+
+  .faq-btn-cal,
+  .faq-btn-mail {
+    width: 100%;
+    text-align: center;
+  }
+}
 /* ── FOOTER ── */
 
 /* LAYOUT */
