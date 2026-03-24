@@ -8,4 +8,4 @@ async function loadPartials() {
 
 document.addEventListener("DOMContentLoaded", loadPartials);
 
-function toggleMenu(){document.querySelector('.nav-links').classList.toggle('active');}
+function toggleMenu(){document.querySelector('.nav-links').classList.toggle('active');document.querySelector('.nav-burger').classList.toggle('active');}
